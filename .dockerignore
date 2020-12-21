@@ -1,0 +1,7 @@
+.serverless
+.swiftpm
+.build/lambda
+scripts
+templates
+readme.md
+serverless.yml

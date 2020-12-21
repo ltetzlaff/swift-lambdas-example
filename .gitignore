@@ -1,0 +1,4 @@
+.build
+.spm
+.serverless
+node_modules

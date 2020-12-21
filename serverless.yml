@@ -1,0 +1,30 @@
+service: hello
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  region: eu-central-1
+  timeout: 1
+  httpApi:
+    payload: '2.0'
+  runtime: provided
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - logs:CreateLogGroup
+        - logs:CreateLogStream
+        - logs:PutLogEvents
+      Resource: "*"
+
+functions:
+  hello:
+    handler: Hello
+    memorySize: 128
+    package:
+      artifact: .build/lambda/Hello/lambda.zip
+    events:
+      - httpApi:
+        method: GET
+        path: /hello
